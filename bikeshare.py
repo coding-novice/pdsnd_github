@@ -10,15 +10,15 @@ CITY_DATA = { 'chicago': 'chicago.csv',
 
 
 def get_filters():
-    city = input("Which city do you want to analyze? Pick 'chicago', 'NYC' or 'washington': ")
-    while city not in ('chicago', 'NYC', 'washington'):
-        city = input("Oops! Seems like you misspelled the city you want to look at. Please pick 'chicago', 'NYC' or 'washington': ")
-    month = input("Which month would you like to analyze? Please pick 'January', 'February', 'March', 'April', 'May', 'June' or 'all' to apply no month filter: ")
-    while month not in ('January', 'February', 'March', 'April', 'May', 'June', 'all'):
-        month = input("Oops! Seems like you misspelled the month you want to look at. Please pick 'January', 'February', 'March', 'April', 'May', 'June' or 'all' to apply no month filter: ")
-    day = input("Which day would you like to analyze?\n Pick 'Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday' or 'all' to apply no day filter: ")
-    while day not in ('Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'all'):
-        day = input("Oops! Seems like you misspelled the day you want to look at. Please pick 'Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday' or 'all' to apply no day filter: ")
+    city = input("Which city do you want to analyze? Pick 'chicago', 'NYC' or 'washington': ").lower()
+    while city not in ('chicago', 'nyc', 'washington'):
+        city = input("Oops! Seems like you misspelled the city you want to look at. Please pick 'chicago', 'NYC' or 'washington': ").lower()
+    month = input("Which month would you like to analyze? Please pick 'January', 'February', 'March', 'April', 'May', 'June' or 'all' to apply no month filter: ").lower()
+    while month not in ('january', 'february', 'march', 'april', 'may', 'june', 'all'):
+        month = input("Oops! Seems like you misspelled the month you want to look at. Please pick 'January', 'February', 'March', 'April', 'May', 'June' or 'all' to apply no month filter: ").lower()
+    day = input("Which day would you like to analyze?\n Pick 'Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday' or 'all' to apply no day filter: ").lower()
+    while day not in ('monday', 'tuesday', 'wednsday', 'thursday', 'friday', 'saturday', 'sunday', 'all'):
+        day = input("Oops! Seems like you misspelled the day you want to look at. Please pick 'Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday' or 'all' to apply no day filter: ").lower()
     if month != 'all' and day != 'all':
         print("You chose to analyze data from {} collected in {} on {}.".format(city, month, day))
     if month != 'all' and day == 'all':
@@ -28,7 +28,7 @@ def get_filters():
     if month == 'all' and day == 'all':
         print("You chose to analyze data from {} and not to filter it by month or day.".format(city))
 
-    if city == 'NYC':
+    if city == 'nyc':
         city = 'new_york_city'
 
 
