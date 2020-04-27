@@ -299,17 +299,19 @@ def main():
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
-        raw_data = input("\nWould you like to see the first 5 columns of raw data? Also enter 'yes' to view other raw data. Enter 'yes' or 'no':\n")
-        while raw_data not in ('yes', 'no'):
-            raw_data = input("Oops! Seems like you misspelled your input. Please enter 'yes' or 'no': ")
-        if raw_data.lower() == 'yes':
-            show_raw_data(df)
+
 
 
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df, city)
+
+        raw_data = input("\nWould you like to see the first 5 columns of raw data? Also enter 'yes' to view other raw data. Enter 'yes' or 'no':\n")
+        while raw_data not in ('yes', 'no'):
+            raw_data = input("Oops! Seems like you misspelled your input. Please enter 'yes' or 'no': ")
+        if raw_data.lower() == 'yes':
+            show_raw_data(df)
 
         restart = input("\nWould you like to restart? Enter 'yes' or 'no':\n")
         if restart.lower() != 'yes':
