@@ -10,15 +10,15 @@ CITY_DATA = { 'chicago': 'chicago.csv',
 
 
 def get_filters():
-    city = input("Which city do you want to analyze? Pick one of the following: 'chicago', 'NYC', 'washington' ")
-    while city not in ('chicago', 'NYC', 'washington'):
-        city = input("Oops! Seems like you misspelled the city you want to look at. Please pick one of the following: 'chicago', 'NYC', 'washington' ")
-    month = input("Which month would you like to analyze? Pick one of the following: 'January', 'February', 'March', 'April', 'May', 'June' or 'all' to apply no month filter")
-    while month not in ('January', 'February', 'March', 'April', 'May', 'June', 'all'):
-        month = input("Oops! Seems like you misspelled the month you want to look at. Please pick one of the following: 'January', 'February', 'March', 'April', 'May', 'June' or 'all' to apply no month filter")
-    day = input("Which day would you like to analyze? Pick one of the following:\n 'Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday' or 'all' to apply no day filter")
-    while day not in ('Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'all'):
-        day = input("Oops! Seems like you misspelled the day you want to look at. Please pick one of the following: 'Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday' or 'all' to apply no day filter ")
+    city = input("Which city do you want to analyze? Pick 'chicago', 'NYC' or 'washington': ").lower()
+    while city not in ('chicago', 'nyc', 'washington'):
+        city = input("Oops! Seems like you misspelled the city you want to look at. Please pick 'chicago', 'NYC' or 'washington': ").lower()
+    month = input("Which month would you like to analyze? Please pick 'January', 'February', 'March', 'April', 'May', 'June' or 'all' to apply no month filter: ").lower()
+    while month not in ('january', 'february', 'march', 'april', 'may', 'june', 'all'):
+        month = input("Oops! Seems like you misspelled the month you want to look at. Please pick 'January', 'February', 'March', 'April', 'May', 'June' or 'all' to apply no month filter: ").lower()
+    day = input("Which day would you like to analyze?\n Pick 'Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday' or 'all' to apply no day filter: ").lower()
+    while day not in ('monday', 'tuesday', 'wednsday', 'thursday', 'friday', 'saturday', 'sunday', 'all'):
+        day = input("Oops! Seems like you misspelled the day you want to look at. Please pick 'Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday' or 'all' to apply no day filter: ").lower()
     if month != 'all' and day != 'all':
         print("You chose to analyze data from {} collected in {} on {}.".format(city, month, day))
     if month != 'all' and day == 'all':
@@ -28,7 +28,7 @@ def get_filters():
     if month == 'all' and day == 'all':
         print("You chose to analyze data from {} and not to filter it by month or day.".format(city))
 
-    if city == 'NYC':
+    if city == 'nyc':
         city = 'new_york_city'
 
 
@@ -275,14 +275,14 @@ def show_raw_data(df):
     while repeat_loop:
         more_data = input("'\nWould you like to see more raw data? You can choose the number of rows to be displayed. Enter 'yes' or 'no'.\n'")
         while more_data not in ('yes', 'no'):
-            more_data = input("Oops! Seems like you misspelled your input. Please pick one of the following answers: 'yes' or 'no'")
+            more_data = input("Oops! Seems like you misspelled your input. Please enter 'yes' or 'no': ")
         if more_data == 'yes':
-            position_of_rows = input("'\nWould you like to see rows from the beginning or from the end of the DataFrame? Enter 'beginning' or 'end'.\n'")
+            position_of_rows = input("'\nWould you like to see rows from the beginning or from the end of the DataFrame? Enter 'beginning' or 'end':\n'")
             while position_of_rows not in ('beginning', 'end'):
-                position_of_rows = input("Oops! Seems like you misspelled your input. Please pick one of the following answers: 'beginning' or 'end'")
-            number_of_rows = int(input("'\nHow many rows (starting from the {} of the DataFrame) would you like to see? Enter an integer between 1 and 100.\n'".format(position_of_rows)))
+                position_of_rows = input("Oops! Seems like you misspelled your input. Please enter 'beginning' or 'end': ")
+            number_of_rows = int(input("'\nHow many rows (starting from the {} of the DataFrame) would you like to see? Enter an integer between 1 and 100:\n'".format(position_of_rows)))
             while number_of_rows not in (list(range(1, 101))):
-                number_of_rows = int(input("Oops! Seems like you entered an invalid number of rows. Please enter an integer between 1 and 100"))
+                number_of_rows = int(input("Oops! Seems like you entered an invalid number of rows. Please enter an integer between 1 and 100: "))
             if position_of_rows == 'beginning':
                 print(df.head(number_of_rows))
             else:
@@ -299,11 +299,7 @@ def main():
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
-        raw_data = input("\nWould you like to see the first 5 columns of raw data? Also enter 'yes' to view other raw data. Enter 'yes' or 'no'.\n")
-        while raw_data not in ('yes', 'no'):
-            raw_data = input("Oops! Seems like you misspelled your input. Please pick one of the following answers: 'yes' or 'no'")
-        if raw_data.lower() == 'yes':
-            show_raw_data(df)
+
 
 
         time_stats(df)
@@ -311,7 +307,13 @@ def main():
         trip_duration_stats(df)
         user_stats(df, city)
 
-        restart = input('\nWould you like to restart? Enter yes or no.\n')
+        raw_data = input("\nWould you like to see the first 5 columns of raw data? Also enter 'yes' to view other raw data. Enter 'yes' or 'no':\n")
+        while raw_data not in ('yes', 'no'):
+            raw_data = input("Oops! Seems like you misspelled your input. Please enter 'yes' or 'no': ")
+        if raw_data.lower() == 'yes':
+            show_raw_data(df)
+
+        restart = input("\nWould you like to restart? Enter 'yes' or 'no':\n")
         if restart.lower() != 'yes':
             break
 
