@@ -1,15 +1,15 @@
 ### Date created
-Include the date you created this project and README file.
+April 27 2020: project and README file created
 
 ### Project Title
-Replace the Project Title
+My first Git and GitHub Project v2
 
 ### Description
-Describe what your project is about and what it does
+The project is part of my nanodegree Program at Udacity. I created this project to prove and practice my skills in working with Git and GitHub.
 
 ### Files used
-Include the files used
+bikeshare.py
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+Forked from: https://github.com/udacity/pdsnd_github
 
