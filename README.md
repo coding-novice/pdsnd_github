@@ -9,6 +9,7 @@ The project is part of my nanodegree Program at Udacity. I created this project 
 
 ### Files used
 bikeshare.py
+.gitignore includes all files used by the bikeshare.py
 
 ### Credits
 Forked from: https://github.com/udacity/pdsnd_github
